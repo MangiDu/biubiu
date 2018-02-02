@@ -7,12 +7,17 @@
         <div class="panel">
             <button @click="addOne">add</button>
             <button @click="show">show</button>
+            <div>
+                {{ editingOne && editingOne.uid }}
+            </div>
+            <input v-if="editingOne" type="text" v-model="editingOne.text">
         </div>
     </div>
 </template>
 
 <script>
 import Button from '@/components/module/button'
+import { mapGetters } from 'vuex'
 export default {
     components: {
         Button
@@ -22,6 +27,9 @@ export default {
             list: [],
             activeIndex: -1
         }
+    },
+    computed: {
+        ...mapGetters(['editingOne'])
     },
     methods: {
         addOne() {

@@ -14,6 +14,7 @@ export default {
     mounted() {
         this.$el.addEventListener('click', () => {
             this.$emit('click', this.uid)
+            this.$store.dispatch('setEditingOne', this)
         })
     }
 }
