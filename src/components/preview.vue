@@ -1,3 +1,44 @@
 <template>
-    <div class="preview">preview</div>
+    <div>
+        <div ref="container" class="previewContent">
+            <component v-for="(component, index) in list" :key="index" :is="component.name"
+                :style="{'box-shadow': activeIndex === index ? '0 0 2px red' : ''}" @click="onClick"></component>
+        </div>
+        <div class="panel">
+            <button @click="addOne">add</button>
+            <button @click="show">show</button>
+        </div>
+    </div>
 </template>
+
+<script>
+import Button from '@/components/module/button'
+export default {
+    components: {
+        Button
+    },
+    data() {
+        return {
+            list: [],
+            activeIndex: -1
+        }
+    },
+    methods: {
+        addOne() {
+            this.list.push({
+                name: 'Button'
+            })
+        },
+        show() {
+            this.activeIndex = -1
+            this.$nextTick(() => {
+                let content = this.$refs.container.innerHTML
+                console.log(content)
+            })
+        },
+        onClick(index) {
+            this.activeIndex = index
+        }
+    }
+}
+</script>

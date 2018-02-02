@@ -2,7 +2,7 @@
     <div class="container clearfix">
         <navbar></navbar>
         <module-list class="pull-left"></module-list>
-        <preview></preview>
+        <preview class="preview"></preview>
     </div>
 </template>
 
