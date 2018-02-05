@@ -3,25 +3,27 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const SET_EDITING_ONE = 'setEditingOne'
+
 const state = {
     editingOne: null
 }
 
 const actions = {
-    ['setEditingOne']({commit}, data) {
-        commit('setEditingOne', data)
+    [SET_EDITING_ONE]({commit}, data) {
+        commit(SET_EDITING_ONE, data)
     }
 }
 
 const mutations = {
-    ['setEditingOne'](state, data) {
+    [SET_EDITING_ONE](state, data) {
         state.editingOne = data
         console.log(state.editingOne)
     }
 }
 
 const getters = {
-    ['editingOne'](state) {
+    editingOne(state) {
         return state.editingOne
     }
 }
