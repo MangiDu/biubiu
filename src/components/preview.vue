@@ -29,7 +29,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['editingOne'])
+        ...mapGetters(['editingOne', 'drake'])
     },
     methods: {
         addOne() {
@@ -47,6 +47,9 @@ export default {
         onClick(index) {
             this.activeIndex = index
         }
+    },
+    mounted() {
+        this.drake.containers.push(this.$refs.container)
     }
 }
 </script>
