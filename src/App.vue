@@ -6,10 +6,7 @@
 
 <script>
 export default {
-    name: 'App',
-    created() {
-        this.$store.dispatch('initDragulaInstance')
-    }
+    name: 'App'
 }
 </script>
 

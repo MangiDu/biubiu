@@ -16,8 +16,8 @@ const actions = {
     [SET_EDITING_ONE]({commit}, data) {
         commit(SET_EDITING_ONE, data)
     },
-    [INIT_DRAGULA_INSTANCE]({commit}) {
-        commit(INIT_DRAGULA_INSTANCE)
+    [INIT_DRAGULA_INSTANCE]({commit}, data) {
+        commit(INIT_DRAGULA_INSTANCE, data)
     }
 }
 
@@ -27,7 +27,7 @@ const mutations = {
     },
     [INIT_DRAGULA_INSTANCE](state, data) {
         if (!state.drake) {
-            state.drake = dragula()
+            state.drake = dragula(data)
         }
     }
 }

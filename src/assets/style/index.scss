@@ -26,18 +26,22 @@ html,body {
     clear: both;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .container {
     height: 100%;
 }
 
 .navbar {
     padding: 10px;
-    background-color: #066553;
-    color: #fff;
+    color: pink;
     font-size: 18px;
     border-bottom: 1px solid #055244;
     .logo {
-        text-shadow: 1px 1px pink;
+        text-shadow: 1px 1px #066553;
+
     }
 }
 
@@ -48,6 +52,8 @@ html,body {
     width: 100px;
     height: 100%;
     border-right: 1px dotted #ccc;
+    user-select: none;
+    overflow: hidden;
     li:not(:last-child) {
         border-bottom: 1px dotted #ccc;
     }

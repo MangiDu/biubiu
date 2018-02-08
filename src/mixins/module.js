@@ -1,3 +1,5 @@
+import eventBus from '@/eventBus'
+
 let _uid = 0
 
 export default {
@@ -14,5 +16,12 @@ export default {
     },
     created() {
         this.getUid()
+    },
+    mounted() {
+        eventBus.$on('drop:finished', (data) => {
+            console.log(this.$el)
+            console.log(data)
+            console.log('===')
+        })
     }
 }

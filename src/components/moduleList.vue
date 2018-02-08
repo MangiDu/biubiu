@@ -1,20 +1,11 @@
 <template>
     <ul class="moduleList">
-        <li><p>Button1</p></li>
-        <li><p>Button2</p></li>
-        <li><p>Button3</p></li>
+        <li data-module-key="button"><p class="clearfix">Button<span class="pull-right handle cursor-pointer">+</span></p></li>
     </ul>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
-    name: 'ModuleList',
-    computed: {
-        ...mapGetters(['drake'])
-    },
-    mounted() {
-        this.drake.containers.push(this.$el)
-    }
+    name: 'ModuleList'
 }
 </script>

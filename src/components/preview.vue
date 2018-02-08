@@ -18,10 +18,12 @@
 <script>
 import Button from '@/components/module/button'
 import { mapGetters } from 'vuex'
+import moduleMixin from '@/mixins/module'
 export default {
     components: {
         Button
     },
+    mixins: [moduleMixin],
     data() {
         return {
             list: [],
@@ -29,7 +31,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['editingOne', 'drake'])
+        ...mapGetters(['editingOne'])
     },
     methods: {
         addOne() {
@@ -47,9 +49,6 @@ export default {
         onClick(index) {
             this.activeIndex = index
         }
-    },
-    mounted() {
-        this.drake.containers.push(this.$refs.container)
     }
 }
 </script>
