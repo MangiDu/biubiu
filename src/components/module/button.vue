@@ -4,6 +4,7 @@
 
 <script>
 import moduleMixin from '@/mixins/module'
+import eventBus from '@/eventBus'
 export default {
     mixins: [moduleMixin],
     data() {
@@ -15,6 +16,9 @@ export default {
         this.$el.addEventListener('click', () => {
             this.$emit('click', this.uid)
             this.$store.dispatch('setEditingOne', this)
+        })
+        eventBus.$on('drop', (data) => {
+            console.log(data)
         })
     }
 }

@@ -44,10 +44,14 @@ export default {
             // })
             this.drake.on('drop', (el, target, source, sibling) => {
                 console.log(target)
-                // if (target) {
-                //     target.removeChild(el)
-                // }
-                // const moduleKey = el.getAttribute('data-module-key')
+                if (target) {
+                    target.removeChild(el)
+                }
+                const moduleKey = el.getAttribute('data-module-key')
+                eventBus.$emit('drop', {
+                    moduleKey,
+                    target
+                })
                 // // console.log(moduleKey)
                 // // this.
                 // eventBus.$emit('drop:finished', {

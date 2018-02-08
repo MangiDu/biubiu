@@ -17,11 +17,12 @@ export default {
     created() {
         this.getUid()
     },
-    mounted() {
-        eventBus.$on('drop:finished', (data) => {
-            console.log(this.$el)
-            console.log(data)
-            console.log('===')
-        })
+    methods: {
+        bindDrop() {
+            eventBus.$on('drop', (data) => {
+                console.log('eventBus on drop')
+                console.log(data)
+            })
+        }
     }
 }

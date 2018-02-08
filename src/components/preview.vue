@@ -26,7 +26,7 @@ export default {
     components: {
         Button
     },
-    // mixins: [moduleMixin],
+    mixins: [moduleMixin],
     data() {
         return {
             list: [],
@@ -52,6 +52,9 @@ export default {
         onClick(index) {
             this.activeIndex = index
         }
+    },
+    mounted() {
+        this.bindDrop()
     }
 }
 </script>
