@@ -43,15 +43,18 @@ export default {
             //     console.log(source)
             // })
             this.drake.on('drop', (el, target, source, sibling) => {
-                target.removeChild(el)
-                const moduleKey = el.getAttribute('data-module-key')
-                // console.log(moduleKey)
-                // this.
-                eventBus.$emit('drop:finished', {
-                    moduleKey,
-                    target,
-                    sibling
-                })
+                console.log(target)
+                // if (target) {
+                //     target.removeChild(el)
+                // }
+                // const moduleKey = el.getAttribute('data-module-key')
+                // // console.log(moduleKey)
+                // // this.
+                // eventBus.$emit('drop:finished', {
+                //     moduleKey,
+                //     target,
+                //     sibling
+                // })
             })
         })
     }

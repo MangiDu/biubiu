@@ -1,8 +1,11 @@
 <template>
     <div>
-        <div ref="container" class="previewContent">
+        <div ref="container" class="previewContent" v-drop-bag>
             <component v-for="(component, index) in list" :key="index" :is="component.name"
                 :style="{'box-shadow': activeIndex === index ? '0 0 2px red' : ''}" @click="onClick"></component>
+            <div style="background-color: #eee; min-height: 30px;" v-drop-bag></div>
+            <div style="background-color: red; min-height: 30px;" v-drop-bag></div>
+            <div style="background-color: green; min-height: 30px;" v-drop-bag></div>
         </div>
         <div class="panel">
             <button @click="addOne">add</button>
@@ -23,7 +26,7 @@ export default {
     components: {
         Button
     },
-    mixins: [moduleMixin],
+    // mixins: [moduleMixin],
     data() {
         return {
             list: [],
