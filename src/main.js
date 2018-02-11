@@ -9,6 +9,12 @@ import App from './App'
 import router from './router'
 import dropBag from '@/directives/dropBag'
 
+import Button from '@/components/module/button'
+import MDiv from '@/components/module/mDiv'
+
+Vue.component('Button', Button)
+Vue.component('MDiv', MDiv)
+
 Vue.directive('drop-bag', dropBag)
 
 Vue.config.productionTip = false

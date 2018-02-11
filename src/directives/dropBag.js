@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import dragula from 'dragula'
+// import dragula from 'dragula'
 import store from '@/store'
 
 export default {
@@ -9,12 +9,17 @@ export default {
         // }
         Vue.nextTick(() => {
             const drake = store.state.drake
-            console.log(el)
             drake.containers.push(el)
-            console.log(drake.containers)
         })
     },
     unbind(el, binding, vnode) {
-
+        const drake = store.state.drake
+        const containers = drake.containers
+        const index = containers.indexOf((element) => {
+            return element === el
+        })
+        if (~index) {
+            containers.splice(index, 1)
+        }
     }
 }

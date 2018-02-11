@@ -1,35 +1,34 @@
 <template>
     <div>
         <div ref="container" class="previewContent" v-drop-bag>
-            <component v-for="(component, index) in list" :key="index" :is="component.name"
-                :style="{'box-shadow': activeIndex === index ? '0 0 2px red' : ''}" @click="onClick"></component>
-            <div style="background-color: #eee; min-height: 30px;" v-drop-bag></div>
-            <div style="background-color: red; min-height: 30px;" v-drop-bag></div>
-            <div style="background-color: green; min-height: 30px;" v-drop-bag></div>
+            <component v-for="(component, index) in list" :key="index" :is="component.name"></component>
         </div>
         <div class="panel">
             <button @click="addOne">add</button>
             <button @click="show">show</button>
             <div>
-                {{ editingOne && editingOne.uid }}
+                uid: {{ editingOne && editingOne.uid }}
             </div>
-            <input v-if="editingOne" type="text" v-model="editingOne.text">
+            <ul v-if="editingOne && editingOne.options">
+                <li v-for="(option, key) in editingOne.options" :key="key">
+                    <span>{{ option.label }}: </span>
+                    <input v-if="option.use === 'input'" type="text" v-model="option.value">
+                    <span v-else>{{ option.value }}</span>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
-import Button from '@/components/module/button'
 import { mapGetters } from 'vuex'
 import moduleMixin from '@/mixins/module'
+import eventBus from '@/eventBus'
 export default {
-    components: {
-        Button
-    },
+    name: 'Preview',
     mixins: [moduleMixin],
     data() {
         return {
-            list: [],
             activeIndex: -1
         }
     },
@@ -54,7 +53,10 @@ export default {
         }
     },
     mounted() {
-        this.bindDrop()
+        eventBus.$on('setEditingOne', (vm) => {
+            console.log(vm)
+            this.$store.dispatch('setEditingOne', vm)
+        })
     }
 }
 </script>

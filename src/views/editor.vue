@@ -50,7 +50,8 @@ export default {
                 const moduleKey = el.getAttribute('data-module-key')
                 eventBus.$emit('drop', {
                     moduleKey,
-                    target
+                    target,
+                    sibling
                 })
                 // // console.log(moduleKey)
                 // // this.
