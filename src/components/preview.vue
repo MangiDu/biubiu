@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div ref="container" class="previewContent" v-drop-bag>
+        <div ref="container" class="previewContent" v-drop-bag v-resize>
             <component v-for="(component, index) in list" :key="index" :is="component.name"></component>
         </div>
         <div class="panel">
@@ -47,7 +47,6 @@ export default {
             this.activeIndex = -1
             this.$nextTick(() => {
                 let content = this.$refs.container.innerHTML
-                console.log(content)
                 content = generateHtmlStr(content)
                 console.log(content)
                 let file = new File([content], 'test.html', {type: 'text/plain;charset=utf-8'})

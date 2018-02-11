@@ -8,6 +8,7 @@ import store from '@/store'
 import App from './App'
 import router from './router'
 import dropBag from '@/directives/dropBag'
+import resize from '@/directives/resize'
 
 import Button from '@/components/module/button'
 import MDiv from '@/components/module/mDiv'
@@ -16,6 +17,7 @@ Vue.component('Button', Button)
 Vue.component('MDiv', MDiv)
 
 Vue.directive('drop-bag', dropBag)
+Vue.directive('resize', resize)
 
 Vue.config.productionTip = false
 
