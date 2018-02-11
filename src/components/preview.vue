@@ -24,6 +24,8 @@
 import { mapGetters } from 'vuex'
 import moduleMixin from '@/mixins/module'
 import eventBus from '@/eventBus'
+import FileSaver from 'file-saver'
+import generateHtmlStr from '@/common/generateHtmlStr'
 export default {
     name: 'Preview',
     mixins: [moduleMixin],
@@ -46,6 +48,10 @@ export default {
             this.$nextTick(() => {
                 let content = this.$refs.container.innerHTML
                 console.log(content)
+                content = generateHtmlStr(content)
+                console.log(content)
+                let file = new File([content], 'test.html', {type: 'text/plain;charset=utf-8'})
+                FileSaver.saveAs(file)
             })
         },
         onClick(index) {
