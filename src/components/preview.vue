@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div ref="container" class="previewContent" v-drop-bag v-resize>
+        <div ref="container" class="previewContent" v-drop-bag v-resize="'bottom'">
             <component v-for="(component, index) in list" :key="index" :is="component.name"></component>
         </div>
         <div class="panel">
