@@ -10,11 +10,9 @@ import router from './router'
 import dropBag from '@/directives/dropBag'
 import resize from '@/directives/resize'
 
-import Button from '@/components/module/button'
-import MDiv from '@/components/module/mDiv'
+import initComponents from '@/components/module/init'
 
-Vue.component('Button', Button)
-Vue.component('MDiv', MDiv)
+initComponents()
 
 Vue.directive('drop-bag', dropBag)
 Vue.directive('resize', resize)
