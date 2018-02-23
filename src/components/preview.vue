@@ -1,7 +1,15 @@
 <template>
     <div>
-        <div ref="container" class="previewContent" v-drop-bag v-resize="'bottom'">
+        <!-- <div ref="container" class="previewContent" v-drop-bag v-resize="'bottom'">
             <component v-for="(component, index) in list" :key="index" :is="component.name"></component>
+        </div> -->
+        <div class="test">
+            test div
+            <ul>
+                <m-node tag-name="li" :option="{content: 'test1'}"></m-node>
+                <m-node tag-name="li" :option="{content: 'test2'}"></m-node>
+                <m-node tag-name="li" :option="{content: 'test3'}"></m-node>
+            </ul>
         </div>
         <div class="panel">
             <button @click="addOne">add</button>
@@ -26,9 +34,14 @@ import moduleMixin from '@/mixins/module'
 import eventBus from '@/eventBus'
 import FileSaver from 'file-saver'
 import generateHtmlStr from '@/common/generateHtmlStr'
+import mNode from '@/components/module/node'
+
 export default {
     name: 'Preview',
     mixins: [moduleMixin],
+    components: {
+        mNode
+    },
     data() {
         return {
             activeIndex: -1
