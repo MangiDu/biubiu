@@ -29,12 +29,23 @@ export default {
     mounted() {
         // 绑定drop结束时间
         this.bindDrop(({ moduleKey, target, sibling }) => {
-            // console.log('preview bind drop')
-            // console.log(data)
+            // TODO: 处理相同moduleKey的拖放
             if (target === this.$refs.container) {
-                this.list.push({
-                    name: moduleKey
-                })
+                let children = target.children
+
+                let index = -1
+                if (children && children.length && sibling) {
+                    index = Array.prototype.indexOf.call(children, sibling)
+                }
+                if (index === -1) {
+                    this.list.push({
+                        name: moduleKey
+                    })
+                } else {
+                    this.list.splice(index, 0, {
+                        name: moduleKey
+                    })
+                }
             }
         })
         // 处理模块的点击事件
@@ -48,7 +59,7 @@ export default {
     },
     beforeDestroy() {
         if (this._dropHandler) {
-            event.$off('drop', this._dropHandler)
+            eventBus.$off('drop', this._dropHandler)
         }
     }
 }
