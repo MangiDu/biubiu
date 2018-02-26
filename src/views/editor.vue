@@ -1,8 +1,8 @@
 <template>
     <div class="container clearfix">
         <navbar></navbar>
-        <!-- <module-list class="pull-left" ref="moduleList"></module-list> -->
-        <!-- <preview class="preview" ref="preview"></preview> -->
+        <button v-draggable="{onStart: onDragStart}">按钮</button>
+        <div v-droppable="{onEnter: onDragEnter, onLeave: onDragLeave, onDrop: onDrop}" style="padding: 10px; border: 1px dotted red; height: 100px;"></div>
     </div>
 </template>
 
@@ -23,45 +23,20 @@ export default {
     computed: {
         ...mapGetters(['drake'])
     },
-    mounted() {
-        // const moduleListEl = this.$refs.moduleList.$el
-        // const previewEl = this.$refs.preview.$el
-
-        // this.$store.dispatch('initDragulaInstance', {
-        //     containers: [moduleListEl, previewEl],
-        //     copy: true,
-        //     moves(el, source, handle, sibling) {
-        //         // 在模块列表中且是用handle拖动的
-        //         return moduleListEl.contains(el) && handle.classList.contains('handle')
-        //     },
-        //     accepts(el, target, cource, sibling) {
-        //         return previewEl.contains(target)
-        //     }
-        // }).then(() => {
-        //     // this.drake.on('drag', (el, source) => {
-        //     //     console.log(el)
-        //     //     console.log(source)
-        //     // })
-        //     this.drake.on('drop', (el, target, source, sibling) => {
-        //         console.log(target)
-        //         if (target) {
-        //             target.removeChild(el)
-        //         }
-        //         const moduleKey = el.getAttribute('data-module-key')
-        //         eventBus.$emit('drop', {
-        //             moduleKey,
-        //             target,
-        //             sibling
-        //         })
-        //         // // console.log(moduleKey)
-        //         // // this.
-        //         // eventBus.$emit('drop:finished', {
-        //         //     moduleKey,
-        //         //     target,
-        //         //     sibling
-        //         // })
-        //     })
-        // })
+    mounted() {},
+    methods: {
+        onDragStart(e) {
+            console.log('on drag start')
+        },
+        onDragEnter(e) {
+            e.target.style.backgroundColor = '#ccc'
+        },
+        onDragLeave(e) {
+            e.target.style.backgroundColor = ''
+        },
+        onDrop(e) {
+            e.target.style.backgroundColor = ''
+        }
     }
 }
 </script>
