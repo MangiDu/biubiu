@@ -8,21 +8,19 @@ const draggable = {
         let onEnd = (binding.value && binding.value.onEnd) || noop
         let onDrag = (binding.value && binding.value.onDrag) || noop
 
-        el.addEventListener('dragstart', (e) => {
-            onStart(e)
-        })
-        el.addEventListener('dragend', (e) => {
-            onEnd(e)
-        })
-        el.addEventListener('drag', (e) => {
-            onDrag(e)
-        })
+        el.addEventListener('dragstart', onStart)
+        el.addEventListener('dragend', onEnd)
+        el.addEventListener('drag', onDrag)
     },
     unbind(el, binding, vnode) {
+        let onStart = (binding.value && binding.value.onStart) || noop
+        let onEnd = (binding.value && binding.value.onEnd) || noop
+        let onDrag = (binding.value && binding.value.onDrag) || noop
+
         el.setAttribute('draggable', false)
-        el.removeEventListener('dragstart')
-        el.removeEventListener('dragend')
-        el.removeEventListener('drag')
+        el.removeEventListener('dragstart', onStart)
+        el.removeEventListener('dragend', onEnd)
+        el.removeEventListener('drag', onDrag)
     }
 }
 
@@ -33,28 +31,21 @@ const droppable = {
         let onLeave = (binding.value && binding.value.onLeave) || noop
         let onDrop = (binding.value && binding.value.onDrop) || noop
 
-        el.addEventListener('dragover', (e) => {
-            e.preventDefault()
-            onOver(e)
-        })
-        el.addEventListener('dragenter', (e) => {
-            e.preventDefault()
-            onEnter(e)
-        })
-        el.addEventListener('dragleave', (e) => {
-            e.preventDefault()
-            onLeave(e)
-        })
-        el.addEventListener('drop', (e) => {
-            e.preventDefault()
-            onDrop(e)
-        })
+        el.addEventListener('dragover', onOver)
+        el.addEventListener('dragenter', onEnter)
+        el.addEventListener('dragleave', onLeave)
+        el.addEventListener('drop', onDrop)
     },
     unbind(el, binding, vnode) {
-        el.removeEventListener('dragover')
-        el.removeEventListener('dragenter')
-        el.removeEventListener('dragleave')
-        el.removeEventListener('drop')
+        let onOver = (binding.value && binding.value.onOver) || noop
+        let onEnter = (binding.value && binding.value.onEnter) || noop
+        let onLeave = (binding.value && binding.value.onLeave) || noop
+        let onDrop = (binding.value && binding.value.onDrop) || noop
+
+        el.removeEventListener('dragover', onOver)
+        el.removeEventListener('dragenter', onEnter)
+        el.removeEventListener('dragleave', onLeave)
+        el.removeEventListener('drop', onDrop)
     }
 }
 

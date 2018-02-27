@@ -4,7 +4,11 @@
         <button v-draggable="{onStart: onDragStart}">按钮</button>
         <div v-droppable="{onEnter: onDragEnter, onLeave: onDragLeave, onDrop: onDrop}" style="padding: 10px; border: 1px dotted red; height: 100px;"></div>
 
-        <m-node-item :root="tree"></m-node-item>
+        <template v-if="tree">
+            <m-node-item :root="tree"></m-node-item>
+        </template>
+
+        <button @click="addChild">add</button>
     </div>
 </template>
 
@@ -16,6 +20,10 @@ import { mapGetters } from 'vuex'
 // import eventBus from '@/eventBus'
 import mNodeItem from '@/components/module/mNodeItem'
 
+import NodeModel from '@/model/node'
+
+let n = 0
+
 export default {
     name: 'Editor',
     components: {
@@ -26,39 +34,21 @@ export default {
     },
     data() {
         return {
-            tree: {
-                tagName: 'ul',
-                children: [{
-                    tagName: 'li',
-                    option: {
-                        domProps: {
-                            innerHTML: 'li one'
-                        }
-                    }
-                },
-                {
-                    tagName: 'li',
-                    option: {
-                        domProps: {
-                            innerHTML: 'li two'
-                        }
-                    }
-                },
-                {
-                    tagName: 'li',
-                    option: {
-                        domProps: {
-                            innerHTML: 'li three'
-                        }
-                    }
-                }]
-            }
+            tree: null
         }
     },
     computed: {
         ...mapGetters(['drake'])
     },
-    mounted() {},
+    mounted() {
+        this.tree = new NodeModel('ul', {})
+        this.tree.addChild(new NodeModel('div', {
+            isDroppable: true,
+            domProps: {
+                innerHTML: 'test'
+            }
+        }))
+    },
     methods: {
         onDragStart(e) {
             console.log('on drag start')
@@ -71,6 +61,14 @@ export default {
         },
         onDrop(e) {
             e.target.style.backgroundColor = ''
+        },
+        addChild() {
+            this.tree.addChild(new NodeModel('li', {
+                isDraggable: true,
+                domProps: {
+                    innerHTML: `${n++} li`
+                }
+            }))
         }
     }
 }
