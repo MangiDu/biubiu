@@ -12,6 +12,7 @@ import resize from '@/directives/resize'
 import dragNdrop from '@/directives/dragNdrop'
 
 import initComponents from '@/components/module/init'
+import node from '@/components/module/node'
 
 initComponents()
 
@@ -19,6 +20,8 @@ Vue.directive('drop-bag', dropBag)
 Vue.directive('resize', resize)
 Vue.directive('draggable', dragNdrop.draggable)
 Vue.directive('droppable', dragNdrop.droppable)
+
+Vue.component('m-node', node)
 
 Vue.config.productionTip = false
 
