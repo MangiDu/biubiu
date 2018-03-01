@@ -22,8 +22,6 @@ import mNodeItem from '@/components/module/mNodeItem'
 
 import NodeModel from '@/model/node'
 
-let n = 0
-
 export default {
     name: 'Editor',
     components: {
@@ -46,6 +44,10 @@ export default {
             isDroppable: true,
             domProps: {
                 innerHTML: 'test'
+            },
+            style: {
+                height: '100px',
+                backgroundColor: '#ccc'
             }
         }))
     },
@@ -63,12 +65,13 @@ export default {
             e.target.style.backgroundColor = ''
         },
         addChild() {
-            this.tree.addChild(new NodeModel('li', {
+            let node = new NodeModel('li', {
                 isDraggable: true,
                 domProps: {
-                    innerHTML: `${n++} li`
+                    innerHTML: `i'm li`
                 }
-            }))
+            })
+            this.tree.addChild(node)
         }
     }
 }
